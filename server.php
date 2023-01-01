@@ -1,4 +1,11 @@
+<?php
+$folderName = "area-records";
+
+?>
+
+
 <?php if (isset($_POST["area_calc_form"])) : ?>
+
     <?php
     $width = $_POST['width'];
     $height = $_POST['breath'];
@@ -16,13 +23,26 @@
         </thead>
         <tbody>
             <tr>
-                <td><?= $width ?></td>
-                <td><?= $height ?></td>
-                <td><?= $area ?></td>
+                <td><?= $width ?> ft</td>
+                <td><?= $height ?> ft</td>
+                <td><?= $area ?> sqft</td>
 
             </tr>
         </tbody>
     </table>
+    <?php
+
+    $json = json_encode(["width" => $width, "height" => $height, "area" => $area]);
+
+    if (!is_dir($folderName)) {
+        mkdir($folderName);
+    }
+
+    $fileName = "record" . uniqid() . ".json";
+    $f = fopen($folderName . "/" . $fileName, "w");
+    fwrite($f, $json);
+    fclose($f);
+    ?>
 <?php endif; ?>
 
 
