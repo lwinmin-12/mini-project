@@ -30,5 +30,18 @@
             <button name="calc" form="exForm" class="btn btn-primary w-100 btn-lg">Calculate</button>
         </div>
     </div>
+    <div class="col-12">
+        <h1 class="my-3" >history</h1>
+
+        <ul class="list-group">
+
+            <?php foreach (file($data) as $ea) : ?>
+                <li class="list-group-item">
+                    <?= $ea ?>
+                </li>
+            <?php endforeach; ?>
+
+        </ul>
+    </div>
 </div>
 <?php include_once('footer.php') ?>
